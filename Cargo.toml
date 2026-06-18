@@ -1,6 +1,6 @@
 [package]
 name = "rustenv"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 authors = ["Anilcan Kara <anilcan@kara.dev>"]
 description = "A fast, secure environment variable and secret management tool — written in Rust"

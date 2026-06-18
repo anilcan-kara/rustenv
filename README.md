@@ -16,9 +16,18 @@ A fast, secure environment variable and secret management tool — written in Ru
 
 ## Installation
 
+### 1. From Source (Cargo)
 ```bash
-cargo install --path .
+cargo install --git https://github.com/anilcan-kara/rustenv.git
 ```
+
+### 2. Direct Binary Download
+You can download the precompiled static binary for your platform directly from the GitHub Release assets:
+- 💻 **Windows (x64)**: [rustenv-win32-x64.exe](https://github.com/anilcan-kara/rustenv/releases/download/v0.1.1/rustenv-win32-x64.exe)
+- 🐧 **Linux (x64)**: [rustenv-linux-x64](https://github.com/anilcan-kara/rustenv/releases/download/v0.1.1/rustenv-linux-x64)
+- 🐧 **Linux (ARM64)**: [rustenv-linux-arm64](https://github.com/anilcan-kara/rustenv/releases/download/v0.1.1/rustenv-linux-arm64)
+- 🍎 **macOS (x64)**: [rustenv-darwin-x64](https://github.com/anilcan-kara/rustenv/releases/download/v0.1.1/rustenv-darwin-x64)
+- 🍎 **macOS (ARM64)**: [rustenv-darwin-arm64](https://github.com/anilcan-kara/rustenv/releases/download/v0.1.1/rustenv-darwin-arm64)
 
 ## Usage
 
