@@ -49,3 +49,22 @@ pub fn write_env_file(path: &Path, variables: &BTreeMap<String, String>) -> Resu
 
     Ok(())
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use tempfile::NamedTempFile;
+
+    #[test]
+    fn test_parse_env_file() {
+        let file = NamedTempFile::new().unwrap();
+        let content = "# Comment\nDATABASE_URL=postgres://localhost/db\nSECRET_KEY=\"mysecret\"\nPORT=3000\n";
+        fs::write(file.path(), content).unwrap();
+
+        let parsed = parse_env_file(file.path()).unwrap();
+        assert_eq!(parsed.len(), 3);
+        assert_eq!(parsed.get("DATABASE_URL").unwrap(), "postgres://localhost/db");
+        assert_eq!(parsed.get("SECRET_KEY").unwrap(), "mysecret");
+        assert_eq!(parsed.get("PORT").unwrap(), "3000");
+    }
+}
