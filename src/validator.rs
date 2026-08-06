@@ -57,6 +57,17 @@ pub fn validate_variables(variables: &BTreeMap<String, String>) -> Vec<Validatio
                 });
             }
         }
+
+        if k.ends_with("_BOOL") || k.ends_with("_BOOLEAN") || k.starts_with("ENABLE_") || k.starts_with("DISABLE_") {
+            let lower_val = v.to_lowercase();
+            if lower_val != "true" && lower_val != "false" && lower_val != "1" && lower_val != "0" {
+                results.push(ValidationResult {
+                    key: k.clone(),
+                    message: format!("Value '{}' is not a valid boolean (must be true/false or 1/0)", v),
+                    is_error: false,
+                });
+            }
+        }
     }
 
     results
@@ -89,4 +100,19 @@ pub fn print_validation(results: &[ValidationResult]) -> bool {
     }
 
     !has_errors
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_validate_boolean_warning() {
+        let mut map = BTreeMap::new();
+        map.insert("ENABLE_FEATURE".to_string(), "invalid_bool".to_string());
+        let res = validate_variables(&map);
+        assert_eq!(res.len(), 1);
+        assert!(!res[0].is_error); // is warning
+        assert!(res[0].message.contains("not a valid boolean"));
+    }
 }
