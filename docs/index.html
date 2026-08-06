@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>rustenv — Fast, Secure .env & Secret Management Tool</title>
+  <meta name="description" content="rustenv is a fast, secure environment variable and secret management CLI written in Rust. Features masked preview, diffing, validation, AES-256 encryption, and export formats.">
+  <meta name="keywords" content="rustenv, dotenv, env, secrets, security, rust, cli, devops, secret-management">
+  <meta property="og:title" content="rustenv — Fast, Secure .env & Secret Management Tool">
+  <meta property="og:description" content="Show with secret masking, diff environments, validate syntax, export to shell/Docker/JSON, and AES-256 encrypt .env files.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://anilcan-kara.github.io/rustenv">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "rustenv",
+    "operatingSystem": "Linux, macOS, Windows",
+    "applicationCategory": "DeveloperApplication",
+    "description": "Fast, secure environment variable and secret management CLI written in Rust.",
+    "url": "https://github.com/anilcan-kara/rustenv"
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg-primary: #090d16;
+      --bg-surface: #111827;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --text-primary: #f9fafb;
+      --text-secondary: #9ca3af;
+      --accent-purple: #a855f7;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background-color: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+    header { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; border-bottom: 1px solid var(--border-color); }
+    .logo { font-size: 1.4rem; font-weight: 800; color: #fff; }
+    .hero { text-align: center; padding: 70px 0 50px; }
+    h1 { font-size: 3.2rem; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.02em; }
+    h1 span { color: var(--accent-purple); }
+    .hero p { font-size: 1.2rem; color: var(--text-secondary); max-width: 640px; margin: 0 auto 30px; }
+    .code-box { background: var(--bg-surface); border: 1px solid var(--border-color); padding: 14px 20px; border-radius: 10px; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; display: inline-block; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 60px 0; }
+    .card { background: rgba(17, 24, 39, 0.6); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; }
+    .card h3 { font-size: 1.15rem; margin-bottom: 8px; color: #fff; }
+    .card p { color: var(--text-secondary); font-size: 0.9rem; }
+    footer { border-top: 1px solid var(--border-color); padding: 30px 0; text-align: center; color: var(--text-secondary); font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">🔐 rustenv</div>
+      <a href="https://github.com/anilcan-kara/rustenv" style="color: #fff; text-decoration: none; font-weight: 600;">GitHub →</a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1>Secret & .env management,<br><span>written in Rust.</span></h1>
+        <p>Show with masked values, diff environments side-by-side, validate syntax, export to Docker/JSON/Shell, and AES-256 encrypt for Git storage.</p>
+        <div class="code-box">cargo install rustenv</div>
+      </section>
+
+      <section class="features-grid">
+        <div class="card">
+          <h3>👁️ Secret Masking</h3>
+          <p>Auto-detects sensitive keys (SECRET, TOKEN, PASS) and masks them in terminal output.</p>
+        </div>
+        <div class="card">
+          <h3>🔍 Environment Diffing</h3>
+          <p>Compare two <code>.env</code> files side-by-side to catch missing keys between staging and production.</p>
+        </div>
+        <div class="card">
+          <h3>🔐 AES-256 Encryption</h3>
+          <p>Encrypt <code>.env</code> files into <code>.env.enc</code> using AES-256-GCM for safe version control storage.</p>
+        </div>
+        <div class="card">
+          <h3>📤 4 Export Formats</h3>
+          <p>Export environment variables to Shell scripts, Docker <code>--env</code> flags, or structured JSON.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>MIT License © 2026 Anilcan Kara · <a href="https://github.com/anilcan-kara/rustenv" style="color: var(--accent-purple);">GitHub Repository</a></p>
+    </footer>
+  </div>
+</body>
+</html>
