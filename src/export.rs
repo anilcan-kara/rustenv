@@ -58,3 +58,15 @@ fn format_shell_val(val: &str) -> String {
         val.to_string()
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_format_shell_val() {
+        assert_eq!(format_shell_val("simple"), "simple");
+        assert_eq!(format_shell_val("with space"), "\"with space\"");
+        assert_eq!(format_shell_val("with$var"), "\"with\\$var\"");
+    }
+}
