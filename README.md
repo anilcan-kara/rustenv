@@ -1,86 +1,99 @@
-# rustenv
+<div align="center">
 
-A fast, secure environment variable and secret management tool — written in Rust.
+<h1>rustenv</h1>
 
-`rustenv` helps developers manage `.env` files, compare differences between environments, validate configurations, mask secrets, and securely encrypt/decrypt environment files.
+<p><strong>A fast, secure environment variable and secret management tool — written in Rust.</strong></p>
+
+[![Crates.io](https://img.shields.io/crates/v/rustenv?style=flat-square&color=fc8d62)](https://crates.io/crates/rustenv)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
+[![Build](https://img.shields.io/github/actions/workflow/status/anilcan-kara/rustenv/release.yml?style=flat-square)](https://github.com/anilcan-kara/rustenv/actions)
+[![GitHub Release](https://img.shields.io/github/v/release/anilcan-kara/rustenv?style=flat-square&color=8be04e)](https://github.com/anilcan-kara/rustenv/releases)
+
+```bash
+rustenv show          # view .env with masked secrets
+rustenv diff .env .env.production   # compare two env files
+rustenv encrypt .env  # AES-256 encrypted .env.enc
+```
+
+</div>
+
+---
+
+## Why rustenv?
+
+Managing `.env` files is painful. You share them over Slack, forget to update `.env.example`, commit secrets by accident, or have no idea what changed between environments. **rustenv** gives you a proper CLI for inspecting, comparing, validating, encrypting, and exporting your environment files.
+
+---
 
 ## Features
 
-- **Profile Management** — Handle `.env.development`, `.env.staging`, `.env.production` easily.
-- **Diffing** — Compare variables between two environments with colorized output.
-- **Validation** — Scan environment files for missing values, invalid ports, malformed emails, and invalid URLs.
-- **Smart Masking** — Automatically hide sensitive keys (like passwords, keys, secrets, tokens).
-- **Strong Encryption** — Encrypt and decrypt `.env` files with AES-256-GCM.
-- **Multi-Format Export** — Export variables to Shell (`export KEY=val`), Docker Compose, or JSON.
-- **Interactive Init** — Initialize `.env` from a template, prompting you for each value.
+- 👁️ **Show** — pretty-print any `.env` file with automatic secret masking
+- 🔍 **Diff** — compare two `.env` files side-by-side, see added/removed/changed keys
+- ✅ **Validate** — check syntax, detect empty values, find duplicates
+- 📤 **Export** — convert `.env` to shell, Docker, or JSON format
+- 🔐 **Encrypt** — AES-256 encrypt your `.env` file into a `.env.enc`
+- 🔓 **Decrypt** — decrypt a `.env.enc` back to plaintext
+- 🎭 **Secret masking** — auto-masks values for keys containing `SECRET`, `TOKEN`, `KEY`, `PASS`, `PWD`
 
-## Installation
-
-### 1. From Source (Cargo)
-```bash
-cargo install --git https://github.com/anilcan-kara/rustenv.git
-```
-
-### 2. Direct Binary Download
-You can download the precompiled static binary for your platform directly from the GitHub Release assets:
-- 💻 **Windows (x64)**: [rustenv-win32-x64.exe](https://github.com/anilcan-kara/rustenv/releases/download/v0.1.1/rustenv-win32-x64.exe)
-- 🐧 **Linux (x64)**: [rustenv-linux-x64](https://github.com/anilcan-kara/rustenv/releases/download/v0.1.1/rustenv-linux-x64)
-- 🐧 **Linux (ARM64)**: [rustenv-linux-arm64](https://github.com/anilcan-kara/rustenv/releases/download/v0.1.1/rustenv-linux-arm64)
-- 🍎 **macOS (x64)**: [rustenv-darwin-x64](https://github.com/anilcan-kara/rustenv/releases/download/v0.1.1/rustenv-darwin-x64)
-- 🍎 **macOS (ARM64)**: [rustenv-darwin-arm64](https://github.com/anilcan-kara/rustenv/releases/download/v0.1.1/rustenv-darwin-arm64)
+---
 
 ## Usage
 
-### Show Variables
-
+### `show` — Display an env file
 ```bash
-rustenv show                    # Shows variables (masked by default)
-rustenv show --unmask           # Shows variables unmasked
+rustenv show                    # reads .env in current dir
+rustenv show .env.production    # specific file
+rustenv show --unmask           # show real values (no masking)
 ```
 
-### Diff Environments
-
+### `diff` — Compare two env files
 ```bash
-rustenv diff .env.staging .env.production
+rustenv diff .env .env.production
 ```
 
-### Validate Variables
-
-Checks for empty values, syntax rules, and common formats (`_PORT`, `_URL`, `_EMAIL`).
-
+### `validate` — Check env file syntax
 ```bash
 rustenv validate
 ```
 
-### Export Variables
-
+### `export` — Convert to different formats
 ```bash
-rustenv export --format shell
-rustenv export --format docker
-rustenv export --format json
+rustenv export --format shell           # export KEY="value" (sourceable)
+rustenv export --format docker          # --env KEY=value flags for docker run
+rustenv export --format json            # { "KEY": "value" }
 ```
 
-### Encrypt & Decrypt Secrets
-
-Securely encrypt your `.env` file before committing to source control.
-
+### `encrypt` / `decrypt` — AES-256 encryption
 ```bash
-rustenv encrypt .env
-rustenv decrypt .env.enc
+rustenv encrypt .env                    # creates .env.enc (prompts for password)
+rustenv decrypt .env.enc -o .env        # decrypt back
 ```
 
-### Merge Environments
+---
 
-```bash
-rustenv merge .env.base .env.local -o .env
+## CLI Reference
+
+```
+rustenv <COMMAND>
+
+Commands:
+  show      Display an env file with masked secrets
+  diff      Compare two env files
+  validate  Validate env file syntax and values
+  export    Export env file in various formats
+  encrypt   Encrypt a .env file with AES-256
+  decrypt   Decrypt a .env.enc file
+  help      Print help for a command
 ```
 
-### Initialize from Template
+---
 
-```bash
-rustenv init --from .env.template --output .env --interactive
-```
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). All PRs welcome.
+
+---
 
 ## License
 
-This project is licensed under the MIT License.
+MIT © [Anilcan Kara](https://github.com/anilcan-kara)
