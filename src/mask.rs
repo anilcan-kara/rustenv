@@ -20,3 +20,25 @@ pub fn mask_value(val: &str) -> String {
     }
     format!("{}********{}", &val[..2], &val[val.len() - 2..])
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_should_mask() {
+        assert!(should_mask("AWS_SECRET_ACCESS_KEY"));
+        assert!(should_mask("DB_PASSWORD"));
+        assert!(should_mask("AUTH_TOKEN"));
+        assert!(should_mask("API_CREDENTIALS"));
+        assert!(!should_mask("DATABASE_URL"));
+        assert!(!should_mask("PORT"));
+    }
+
+    #[test]
+    fn test_mask_value() {
+        assert_eq!(mask_value(""), "");
+        assert_eq!(mask_value("short"), "********");
+        assert_eq!(mask_value("super_long_secret_value"), "su********ue");
+    }
+}
