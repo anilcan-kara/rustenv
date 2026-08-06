@@ -1,0 +1,35 @@
+name: Bug Report
+description: Something isn't working as expected
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a bug! Please fill in as much detail as possible.
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Output of `rustenv --version`
+      placeholder: "e.g. rustenv 0.1.1"
+    validations:
+      required: true
+
+  - type: textarea
+    id: command
+    attributes:
+      label: Command Ran
+      description: The exact command that triggered the bug
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behaviour
+      description: What actually happened? Include error output.
+      render: shell
+    validations:
+      required: true
